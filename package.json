@@ -1,6 +1,6 @@
 {
   "name": "@bruh-codes/codebox",
-  "version": "1.0",
+  "version": "1.0.0",
   "license": "ISC",
   "description": "Code syntax highlighting tool for Editor.js",
   "keywords": [
@@ -14,7 +14,7 @@
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dev-juju/codebox.git"
+    "url": "https://github.com/Bruh-Codes/-bruh-codes-codebox"
   },
   "scripts": {
     "build": "webpack --progress",
@@ -27,15 +27,14 @@
     "@babel/preset-env": "7.5.5",
     "babel-eslint": "^10.0.3",
     "babel-loader": "8.0.6",
-    "css-loader": "^1.0.0",
-    "eslint": "^6.8.0",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.33.0",
     "style-loader": "^0.21.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.7"
+    "webpack": "^5.101.0",
+    "webpack-cli": "^6.0.1"
   },
   "files": [
     "dist"
   ],
-  "main": "dist/index.min.js",
-  "dependencies": {}
+  "main": "dist/index.min.js"
 }
