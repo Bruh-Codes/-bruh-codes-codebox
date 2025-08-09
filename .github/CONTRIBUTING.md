@@ -36,10 +36,4 @@ The core team is monitoring for pull requests. We will review your pull request 
 
 2) Run npm install in the repository root.
 
-3) If you've fixed a bug or added code that should be tested, add tests!
-
-4) Ensure the test suite passes (npm run test). Tip: npm test -- --watch TestName is helpful in development.
-
-5) Run npm test -- -u to update the jest snapshots and commit these changes as well (if there are any updates).
-
-6) Make sure you follow our style guide (take a look at .eslint.js in the root directory).
+3) Run npm run build to make sure the project builds without errors.
