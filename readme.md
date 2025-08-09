@@ -1,4 +1,13 @@
-#
+# CodeBox
+
+Code syntax highlighting tool for Editor.js, forked from [@bomdi/codebox](https://github.com/bomdi/editorjs-codebox) and updated with new features.
+
+## Features
+
+*   **Read-Only Mode:**  Hides the language selection dropdown when the editor is in read-only mode.
+*   **Automatic Theme Switching:**  Syncs with your Next.js app's theme (via `next-themes`), automatically switching between light and dark modes.
+*   **Responsive Design:** Adapts to different screen sizes for a better user experience.
+*   **Syntax Highlighting:** Powered by `highlight.js`.
 
 ## Installation
 
@@ -23,10 +32,10 @@ Add CodeBox `tools` property of the CodeX Editor initial config.
 const CodexEditor = require('@editorjs/editorjs');
 
 let editor = new CodexEditor({
-  ...
+  ... 
 
   tools: {
-    ...
+    ... 
     codeBox: {
       class: CodeBox,
       config: {
@@ -37,7 +46,7 @@ let editor = new CodexEditor({
     },
   }
 
-  ...
+  ... 
 });
 ```
 
@@ -95,5 +104,3 @@ export default CodeBlock;
 Kamasah Dickson
 
 Twitter: [Bruh_codes](https://x.com/bruh_codes)
-
-![](https://firebasestorage.googleapis.com/v0/b/editorjs-react-renderer.appspot.com/o/Bomdi%202.jpg?alt=media&token=323c4b3e-8542-4031-9660-74280a8cfefc)

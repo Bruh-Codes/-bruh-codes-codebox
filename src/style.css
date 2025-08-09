@@ -87,3 +87,14 @@
   color: #383a42;
   background-color: #fafafa;
 }
+
+@media (max-width: 600px) {
+  .codeBoxTextArea {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .codeBoxSelectInput {
+    padding: 2px 20px;
+  }
+}

@@ -38,6 +38,14 @@ class CodeBox {
     this._injectHighlightJSCSSElement();
 
     this.api.listeners.on(window, 'click', this._closeAllLanguageSelects, true);
+
+    const observer = new MutationObserver(() => {
+      this._updateTheme();
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
   }
 
   static get sanitize(){
@@ -69,23 +77,20 @@ class CodeBox {
 
   render(){
     const codeAreaHolder = document.createElement('pre');
-    const languageSelect = this._createLanguageSelectElement();
 
     codeAreaHolder.setAttribute('class', 'codeBoxHolder');
     this.codeArea.setAttribute('class', `codeBoxTextArea ${ this.config.useDefaultTheme } ${ this.data.language }`);
-    this.codeArea.setAttribute('contenteditable', true);
+    this.codeArea.setAttribute('contenteditable', !this.readOnly);
     this.codeArea.innerHTML = this.data.code;
     this.api.listeners.on(this.codeArea, 'blur', event => this._highlightCodeArea(event), false);
     this.api.listeners.on(this.codeArea, 'paste', event => this._handleCodeAreaPaste(event), false);
 
-    if(this.readOnly) {
-      this.codeArea.setAttribute('contenteditable', false);
-    } else {
-      this.codeArea.setAttribute('contenteditable', true);
-    }
-
     codeAreaHolder.appendChild(this.codeArea);
-    codeAreaHolder.appendChild(languageSelect);
+
+    if (!this.readOnly) {
+      const languageSelect = this._createLanguageSelectElement();
+      codeAreaHolder.appendChild(languageSelect);
+    }
 
     return codeAreaHolder;
   }
@@ -164,6 +169,22 @@ class CodeBox {
   _closeAllLanguageSelects(){
     const selectPreviews = document.querySelectorAll('.codeBoxSelectPreview');
     for (let i = 0, len = selectPreviews.length; i < len; i++) selectPreviews[i].classList.remove('codeBoxShow');
+  }
+
+  _updateTheme() {
+    const isDark = document.documentElement.classList.contains('dark');
+    this.config.useDefaultTheme = isDark ? 'dark' : 'light';
+    this._injectHighlightJSCSSElement();
+    this.codeArea.setAttribute('class', `codeBoxTextArea ${ this.config.useDefaultTheme } ${ this.data.language }`);
+    if (!this.readOnly) {
+      this.selectInput.setAttribute('class', `codeBoxSelectInput ${ this.config.useDefaultTheme }`);
+      this.selectDropIcon.setAttribute('class', `codeBoxSelectDropIcon ${ this.config.useDefaultTheme }`);
+      const selectItems = document.querySelectorAll('.codeBoxSelectItem');
+      selectItems.forEach(item => {
+        item.setAttribute('class', `codeBoxSelectItem ${ this.config.useDefaultTheme }`);
+      });
+    }
+    hljs.highlightBlock(this.codeArea);
   }
 
   _injectHighlightJSScriptElement(){
